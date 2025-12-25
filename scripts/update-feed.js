@@ -143,14 +143,24 @@ async function main() {
     console.log(`Starting scan for ${profiles.length} profiles...`);
     let allNewItems = [];
 
-    for (const profile of profiles) {
-        const items = await scrapeProfile(profile);
-        if (items.length > 0) {
-            console.log(`+ Found ${items.length} items.`);
-            allNewItems = [...allNewItems, ...items];
-            await sleep(BASE_DELAY_MS);
-        } else {
-            await sleep(5000);
+    // Turbo Mode: Process 5 profiles in parallel
+    const CHUNK_SIZE = 5;
+    for (let i = 0; i < profiles.length; i += CHUNK_SIZE) {
+        const chunk = profiles.slice(i, i + CHUNK_SIZE);
+        console.log(`Processing chunk ${Math.floor(i / CHUNK_SIZE) + 1}/${Math.ceil(profiles.length / CHUNK_SIZE)} (Profiles ${i + 1}-${Math.min(i + CHUNK_SIZE, profiles.length)})...`);
+
+        const results = await Promise.all(chunk.map(profile => scrapeProfile(profile)));
+
+        results.forEach(items => {
+            if (items.length > 0) {
+                console.log(`  + Found ${items.length} items.`);
+                allNewItems = [...allNewItems, ...items];
+            }
+        });
+
+        // Small breather between batches
+        if (i + CHUNK_SIZE < profiles.length) {
+            await sleep(2000);
         }
     }
 
