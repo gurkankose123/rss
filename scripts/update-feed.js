@@ -20,8 +20,8 @@ if (!apiKey) {
 
 const ai = new GoogleGenAI({ apiKey });
 
-// Delay (30s suggested)
-const BASE_DELAY_MS = 30000;
+// Delay (Reduced to 5s since we have Paid API Key)
+const BASE_DELAY_MS = 5000;
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
