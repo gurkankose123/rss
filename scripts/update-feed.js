@@ -105,11 +105,17 @@ async function scrapeProfile(profile) {
         const items = JSON.parse(cleanText.trim());
 
         if (Array.isArray(items)) {
-            return items.map(item => ({
-                ...item,
-                author: profile.name,
-                guid: item.link
-            }));
+            return items.map(item => {
+                // Format Author Name: "Ahmet Bolat (LI)" -> "Ahmet Bolat LinkedIn Hesabı"
+                const cleanName = profile.name.replace(/\s*\(.*?\)\s*/g, '').trim();
+                const formattedAuthor = `${cleanName} ${profile.platform} Hesabı`;
+
+                return {
+                    ...item,
+                    author: formattedAuthor,
+                    guid: item.link
+                };
+            });
         }
         return [];
     } catch (e) {
