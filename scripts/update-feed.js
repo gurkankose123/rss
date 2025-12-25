@@ -67,10 +67,12 @@ async function scrapeProfile(profile) {
     // Prompt structure (Keeping original logic)
     const prompt = `
     Analyze this social media profile: "${profile.url}" (${profile.platform})
-    Using Google Search, find the recent posts/news from this profile published ONLY within the last 24 hours.
+    Using Google Search, find the recent posts/news from this profile published ONLY within the last 2 hours.
     
-    If a post is older than 24 hours, DO NOT include it.
-    If no posts are found from the last 24 hours, return an empty array [].
+    If a post is older than 2 hours, DO NOT include it.
+    If no posts are found from the last 2 hours, return an empty array [].
+    
+    IMPORTANT: If the post has an image, you MUST extract its direct URL into "imageUrl".
     
     Return ONLY a JSON array with this format:
     [
@@ -79,7 +81,7 @@ async function scrapeProfile(profile) {
           "link": "Direct URL to post",
           "description": "Content summary (Turkish)",
           "pubDate": "ISO 8601 Date",
-          "imageUrl": "Image URL if available"
+          "imageUrl": "Direct Image URL (or null)"
         }
     ]
     `;
