@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { 
-  Rss, 
-  Trash2, 
-  RefreshCw, 
-  Clock, 
-  Copy, 
-  Check, 
+import {
+  Rss,
+  Trash2,
+  RefreshCw,
+  Clock,
+  Copy,
+  Check,
   ExternalLink,
   Code,
   LayoutDashboard,
@@ -23,50 +23,9 @@ import {
 import { scrapeProfile, generateUnifiedRSS } from './services/profileService';
 import { MonitoredProfile, RSSItem } from './types';
 
-const INITIAL_SEED: Omit<MonitoredProfile, 'id' | 'status' | 'items' | 'lastChecked'>[] = [
-  // 1- Baykar (Sadece LinkedIn)
-  { name: 'Baykar (LI)', url: 'https://linkedin.com/company/baykar-technologies', platform: 'LinkedIn' },
-  // 2- Yönetim (Baykar) (Sadece LinkedIn)
-  { name: 'Selçuk Bayraktar (LI)', url: 'https://linkedin.com/in/selcuk-bayraktar', platform: 'LinkedIn' },
-  { name: 'Haluk Bayraktar (LI)', url: 'https://linkedin.com/in/haluk-bayraktar', platform: 'LinkedIn' },
-  // 3- Kamu Şirketleri (Sadece LinkedIn)
-  { name: 'TUSAŞ (LI)', url: 'https://linkedin.com/company/turkish-aerospace-industries', platform: 'LinkedIn' },
-  { name: 'ASELSAN (LI)', url: 'https://linkedin.com/company/aselsan', platform: 'LinkedIn' },
-  { name: 'ROKETSAN (LI)', url: 'https://linkedin.com/company/roketsan', platform: 'LinkedIn' },
-  { name: 'HAVELSAN (LI)', url: 'https://linkedin.com/company/havelsan', platform: 'LinkedIn' },
-  { name: 'TEI (LI)', url: 'https://linkedin.com/company/tei-tusas-engine-industries', platform: 'LinkedIn' },
-  // 4- Havayolları (Sadece LinkedIn)
-  { name: 'THY (LI)', url: 'https://linkedin.com/company/turkish-airlines', platform: 'LinkedIn' },
-  { name: 'Pegasus (LI)', url: 'https://linkedin.com/company/pegasus-airlines', platform: 'LinkedIn' },
-  { name: 'SunExpress (LI)', url: 'https://linkedin.com/company/sunexpress', platform: 'LinkedIn' },
-  { name: 'AJet (LI)', url: 'https://linkedin.com/company/ajet-tr', platform: 'LinkedIn' },
-  // 5- Yöneticiler
-  { name: 'Ahmet Bolat (LI)', url: 'https://linkedin.com/in/ahmet-bolat-1a742337', platform: 'LinkedIn' },
-  { name: 'Güliz Öztürk (LI)', url: 'https://linkedin.com/in/guliz-ozturk', platform: 'LinkedIn' },
-  { name: 'Mahmut Akşit (LI)', url: 'https://linkedin.com/in/mahmut-f-aksit-8079a41', platform: 'LinkedIn' },
-  // Twitter Only (LinkedIn verilmediği için bunlar X olarak kaldı)
-  { name: 'Bilal Ekşi (X)', url: 'https://twitter.com/BilalEksiTHY', platform: 'X' },
-  { name: 'Yahya Üstün (X)', url: 'https://twitter.com/yhyustun', platform: 'X' },
-  { name: 'Haluk Görgün (X)', url: 'https://twitter.com/halukgorgun', platform: 'X' },
-  // 6- Resmi Kurumlar
-  { name: 'SSB (LI)', url: 'https://linkedin.com/company/ssb-gov-tr', platform: 'LinkedIn' },
-  { name: 'STM Savunma (LI)', url: 'https://linkedin.com/company/stmdefense', platform: 'LinkedIn' },
-  { name: 'Ulaştırma Bak. (X)', url: 'https://twitter.com/UABakanligi', platform: 'X' },
-  { name: 'Abdulkadir Uraloğlu (X)', url: 'https://twitter.com/a_uraloglu', platform: 'X' },
-  { name: 'DHMİ (X)', url: 'https://twitter.com/dhmikurumsal', platform: 'X' },
-  { name: 'SHGM (X)', url: 'https://twitter.com/SHGM', platform: 'X' },
-  // 7- Havalimanları
-  { name: 'İGA İstanbul (LI)', url: 'https://linkedin.com/company/igairport', platform: 'LinkedIn' },
-  { name: 'Sabiha Gökçen (X)', url: 'https://twitter.com/SabihaGokcen', platform: 'X' },
-  // 8- Özel Kargo & Charter (Sadece LinkedIn)
-  { name: 'Corendon (LI)', url: 'https://linkedin.com/company/corendon-airlines', platform: 'LinkedIn' },
-  { name: 'Freebird (LI)', url: 'https://linkedin.com/company/freebird-airlines', platform: 'LinkedIn' },
-  { name: 'Southwind (LI)', url: 'https://linkedin.com/company/southwind-airlines', platform: 'LinkedIn' },
-  { name: 'MNG Airlines (LI)', url: 'https://linkedin.com/company/mng-airlines', platform: 'LinkedIn' },
-  { name: 'ACT Airlines (LI)', url: 'https://linkedin.com/company/act-airlines', platform: 'LinkedIn' },
-  { name: 'ULS Airlines (LI)', url: 'https://linkedin.com/company/uls-airlines-cargo', platform: 'LinkedIn' },
-  { name: 'BBN Airlines (LI)', url: 'https://linkedin.com/company/bbn-airlines-turkey', platform: 'LinkedIn' },
-];
+import initialProfiles from './data/profiles.json';
+
+const INITIAL_SEED: Omit<MonitoredProfile, 'id' | 'status' | 'items' | 'lastChecked'>[] = initialProfiles as Omit<MonitoredProfile, 'id' | 'status' | 'items' | 'lastChecked'>[];
 
 const App: React.FC = () => {
   const [profiles, setProfiles] = useState<MonitoredProfile[]>([]);
@@ -119,13 +78,13 @@ const App: React.FC = () => {
       } : p));
     } catch (err: any) {
       setProfiles(prev => prev.map(p => p.id === id ? { ...p, status: 'error' } : p));
-      
+
       let errorMsg = "Hata oluştu.";
       if (err.message === "API_KEY_INVALID") errorMsg = "Geçersiz API Anahtarı!";
       if (err.message === "RATE_LIMIT_EXCEEDED") {
         errorMsg = "API Kotası Doldu! Lütfen 30-60 saniye bekleyin.";
       }
-      
+
       setGlobalError(errorMsg);
     }
   };
@@ -138,7 +97,7 @@ const App: React.FC = () => {
     for (let i = 0; i < profiles.length; i++) {
       setSyncProgress(prev => ({ ...prev, current: i + 1 }));
       await performScan(profiles[i].id, profiles[i].url);
-      
+
       // Kota güvenliği için araya boşluk koyuyoruz
       const delay = selectedModel.includes('pro') ? 15000 : 8000;
       if (i < profiles.length - 1) {
@@ -163,7 +122,7 @@ const App: React.FC = () => {
 
   if (!isReady) return null;
 
-  const allItems = profiles.flatMap(p => p.items).sort((a, b) => 
+  const allItems = profiles.flatMap(p => p.items).sort((a, b) =>
     new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
   );
 
@@ -179,16 +138,16 @@ const App: React.FC = () => {
             </div>
             <h1 className="text-sm font-bold tracking-tight">Social2RSS <span className="text-emerald-600">Pro</span></h1>
           </div>
-          
+
           <div className="flex items-center gap-3">
             <div className="hidden lg:flex items-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200">
-              <button 
+              <button
                 onClick={() => setSelectedModel('gemini-3-flash-preview')}
                 className={`px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all flex items-center gap-1.5 ${selectedModel === 'gemini-3-flash-preview' ? 'bg-white shadow-sm text-emerald-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
                 <Cpu size={12} /> FLASH
               </button>
-              <button 
+              <button
                 onClick={() => setSelectedModel('gemini-3-pro-preview')}
                 className={`px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all flex items-center gap-1.5 ${selectedModel === 'gemini-3-pro-preview' ? 'bg-white shadow-sm text-emerald-600' : 'text-slate-500 hover:text-slate-700'}`}
               >
@@ -196,17 +155,16 @@ const App: React.FC = () => {
               </button>
             </div>
 
-            <button 
+            <button
               onClick={syncAll}
               disabled={isSyncing}
-              className={`px-4 py-2 rounded-xl text-[11px] font-bold flex items-center gap-2 transition-all border ${
-                isSyncing ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-white border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600'
-              }`}
+              className={`px-4 py-2 rounded-xl text-[11px] font-bold flex items-center gap-2 transition-all border ${isSyncing ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-white border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600'
+                }`}
             >
               {isSyncing ? <Loader2 size={14} className="animate-spin" /> : <RefreshCw size={14} />}
               {isSyncing ? `${syncProgress.current}/${syncProgress.total}` : 'Yenile'}
             </button>
-            <button 
+            <button
               onClick={downloadRSS}
               className="px-4 py-2 rounded-xl text-[11px] font-bold flex items-center gap-2 bg-emerald-600 text-white hover:bg-emerald-700 shadow-md shadow-emerald-100"
             >
@@ -233,11 +191,10 @@ const App: React.FC = () => {
             <div className="flex-1 overflow-y-auto custom-scrollbar space-y-2">
               {profiles.map(p => (
                 <div key={p.id} className="group flex items-center gap-3 p-3 bg-slate-50/50 rounded-2xl border border-slate-100 hover:bg-white transition-all">
-                  <div className={`w-2 h-2 rounded-full ${
-                    p.status === 'scanning' ? 'bg-emerald-500 animate-pulse' : 
-                    p.status === 'success' ? 'bg-green-500' : 
-                    p.status === 'error' ? 'bg-red-500' : 'bg-slate-300'
-                  }`} />
+                  <div className={`w-2 h-2 rounded-full ${p.status === 'scanning' ? 'bg-emerald-500 animate-pulse' :
+                      p.status === 'success' ? 'bg-green-500' :
+                        p.status === 'error' ? 'bg-red-500' : 'bg-slate-300'
+                    }`} />
                   <div className="flex-1 min-w-0">
                     <p className="text-[11px] font-bold text-slate-700 truncate">{p.name}</p>
                     <p className="text-[9px] text-slate-400 truncate opacity-60">{p.url}</p>
@@ -307,7 +264,7 @@ const App: React.FC = () => {
                     <h3 className="font-bold text-sm mb-4 flex items-center gap-2"><BarChart3 size={16} className="text-emerald-600" /> API Kota Bilgisi</h3>
                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-3">
                       <p className="text-[11px] text-slate-600 leading-relaxed">
-                        Ücretsiz katmanda Google Arama (Search Grounding) özelliği dakikada yaklaşık <strong>1-2 isteğe</strong> izin verir. 
+                        Ücretsiz katmanda Google Arama (Search Grounding) özelliği dakikada yaklaşık <strong>1-2 isteğe</strong> izin verir.
                         Aynı kurumun hem LinkedIn hem Twitter hesabını takip etmek yerine sadece birini takip etmek kotalarınızı daha verimli kullanmanızı sağlar.
                       </p>
                       <ul className="text-[11px] text-slate-700 font-bold list-disc ml-4">
@@ -323,7 +280,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </main>
-      
+
       <footer className="py-6 text-center text-slate-400 border-t border-slate-100 text-[10px] font-medium tracking-widest uppercase">
         Social2RSS • Gemini AI Powered Social Tracking
       </footer>

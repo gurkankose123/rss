@@ -1,0 +1,37 @@
+name: Auto Update RSS Feed (Hourly)
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Run hourly
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Update Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/update-feed.js
+
+      - name: Commit and Push feed.xml
+        run: |
+          git config --global user.name 'Social2RSS Bot'
+          git config --global user.email 'bot@social2rss.local'
+          git add public/feed.xml
+          git commit -m "Auto-update feed.xml [skip ci]" || echo "No changes to commit"
+          git push
