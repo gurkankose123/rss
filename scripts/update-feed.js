@@ -67,7 +67,10 @@ async function scrapeProfile(profile) {
     // Prompt structure (Keeping original logic)
     const prompt = `
     Analyze this social media profile: "${profile.url}" (${profile.platform})
-    Using Google Search, find the 2 most recent posts/news from this profile.
+    Using Google Search, find the recent posts/news from this profile published ONLY within the last 24 hours.
+    
+    If a post is older than 24 hours, DO NOT include it.
+    If no posts are found from the last 24 hours, return an empty array [].
     
     Return ONLY a JSON array with this format:
     [
