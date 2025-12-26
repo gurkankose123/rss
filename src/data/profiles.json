@@ -163,5 +163,50 @@
         "name": "BBN Airlines (LI)",
         "url": "https://linkedin.com/company/bbn-airlines-turkey",
         "platform": "LinkedIn"
+    },
+    {
+        "name": "FL360aero (X)",
+        "url": "https://twitter.com/fl360aero",
+        "platform": "Twitter"
+    },
+    {
+        "name": "FlightGlobal (X)",
+        "url": "https://twitter.com/flightglobal",
+        "platform": "Twitter"
+    },
+    {
+        "name": "FlightEmergency (X)",
+        "url": "https://twitter.com/flightemergency",
+        "platform": "Twitter"
+    },
+    {
+        "name": "Fahad Naim (X)",
+        "url": "https://twitter.com/fahadnaimb",
+        "platform": "Twitter"
+    },
+    {
+        "name": "Cpt340 (X)",
+        "url": "https://twitter.com/cpt340",
+        "platform": "Twitter"
+    },
+    {
+        "name": "AviationBrk (X)",
+        "url": "https://twitter.com/aviationbrk",
+        "platform": "Twitter"
+    },
+    {
+        "name": "Aviation Safety (X)",
+        "url": "https://twitter.com/aviationsafety",
+        "platform": "Twitter"
+    },
+    {
+        "name": "AeroNewsGlobal (X)",
+        "url": "https://twitter.com/aeronewsglobal",
+        "platform": "Twitter"
+    },
+    {
+        "name": "AvHerald (X)",
+        "url": "https://twitter.com/avherald",
+        "platform": "Twitter"
     }
 ]
