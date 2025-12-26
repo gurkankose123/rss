@@ -33,8 +33,14 @@ jobs:
 
       - name: Commit and Push feed.xml
         run: |
-          git config --global user.name 'Social2RSS Bot'
-          git config --global user.email 'bot@social2rss.local'
-          git add public/feed.xml
-          git commit -m "Auto-update feed.xml [skip ci]" || echo "No changes to commit"
-          git push
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Check if file exists to avoid "pathspec ... did not match any files" error
+          if [ -f public/feed.xml ]; then
+            git add public/feed.xml
+            git commit -m "Auto-update RSS feed [skip ci]" || echo "No changes to commit"
+            git push
+          else
+            echo "⚠️ public/feed.xml not found. Likely no new items scraped. Skipping commit."
+          fi
