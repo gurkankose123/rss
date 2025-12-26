@@ -2,8 +2,11 @@ name: Auto Update RSS Feed (Hourly)
 
 on:
   schedule:
-    - cron: '0 * * * *' # Run hourly
-  workflow_dispatch: # Allow manual trigger
+    # Hafta İçi (Pzt-Cum): 09:00, 12:00, 15:00, 18:00 (TR Saati) -> UTC: 6,9,12,15
+    - cron: '0 6,9,12,15 * * 1-5'
+    # Hafta Sonu (Cmt-Paz): 12:00, 18:00 (TR Saati) -> UTC: 9,15
+    - cron: '0 9,15 * * 6,0'
+  workflow_dispatch: # Manuel tetikleme için # Allow manual trigger
 
 jobs:
   update-feed:
