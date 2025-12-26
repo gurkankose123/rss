@@ -25,22 +25,47 @@ const BASE_DELAY_MS = 5000;
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+// Global circuit breaker
+let consecutive429Errors = 0;
+const MAX_CONSECUTIVE_429 = 3;
+
 async function generateContentWithRetry(prompt, retries = 3) {
-    // Exact model from user's code: gemini-3-flash-preview
-    // With @google/genai SDK
+    // Check circuit breaker
+    if (consecutive429Errors >= MAX_CONSECUTIVE_429) {
+        throw new Error("CIRCUIT_BROKEN_QUOTA_EXCEEDED");
+    }
+
     const model = "gemini-3-flash-preview";
 
     for (let i = 0; i < retries; i++) {
         try {
-            return await ai.models.generateContent({
+            const result = await ai.models.generateContent({
                 model: model,
                 contents: prompt,
                 config: { tools: [{ googleSearch: {} }] },
             });
+            // Reset counter on success
+            consecutive429Errors = 0;
+            return result;
         } catch (error) {
             const errStr = error.toString();
 
-            // Fallback
+            // Circuit Breaker Trigger
+            if (errStr.includes("429") || errStr.includes("Quota exceeded") || (error.status === 429)) {
+                consecutive429Errors++;
+                console.log(`!! Rate Limit (429) hit. (${consecutive429Errors}/${MAX_CONSECUTIVE_429})`);
+
+                if (consecutive429Errors >= MAX_CONSECUTIVE_429) {
+                    console.error("!!! CIRCUIT BREAKER TRIPPED: Quota likely exhausted. Stopping all scans.");
+                    throw new Error("CIRCUIT_BROKEN_QUOTA_EXCEEDED");
+                }
+
+                console.log(`Waiting 60s before retry ${i + 1}/${retries}...`);
+                await sleep(60000);
+                continue;
+            }
+
+            // Fallback for 404
             if ((errStr.includes("404") || errStr.includes("not found")) && i === 0) {
                 console.log("Warngin: 'gemini-3-flash-preview' not found. Falling back to 'gemini-2.0-flash-exp'...");
                 return await ai.models.generateContent({
@@ -49,12 +74,6 @@ async function generateContentWithRetry(prompt, retries = 3) {
                     config: { tools: [{ googleSearch: {} }] },
                 });
             }
-
-            if (errStr.includes("429") || errStr.includes("Quota exceeded") || (error.status === 429)) {
-                console.log(`!! Rate Limit (429) hit. Waiting 60s before retry ${i + 1}/${retries}...`);
-                await sleep(60000);
-                continue;
-            }
             throw error;
         }
     }
@@ -62,6 +81,11 @@ async function generateContentWithRetry(prompt, retries = 3) {
 }
 
 async function scrapeProfile(profile) {
+    // Check breaker before starting
+    if (consecutive429Errors >= MAX_CONSECUTIVE_429) {
+        return [];
+    }
+
     console.log(`Analyzing: ${profile.name} (${profile.platform})...`);
 
     // Prompt structure (Keeping original logic)
@@ -116,7 +140,11 @@ async function scrapeProfile(profile) {
         }
         return [];
     } catch (e) {
-        console.error(`- Error for ${profile.name}:`, e.message);
+        if (e.message.includes("CIRCUIT_BROKEN")) {
+            console.log("Skipping due to broken circuit.");
+        } else {
+            console.error(`- Error for ${profile.name}:`, e.message);
+        }
         return [];
     }
 }
