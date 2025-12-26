@@ -35,7 +35,7 @@ async function generateContentWithRetry(prompt, retries = 3) {
         throw new Error("CIRCUIT_BROKEN_QUOTA_EXCEEDED");
     }
 
-    const model = "gemini-3-flash-preview";
+    const model = "gemini-2.0-flash-exp";
 
     for (let i = 0; i < retries; i++) {
         try {
