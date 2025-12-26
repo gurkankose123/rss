@@ -88,10 +88,7 @@ async function scrapeProfile(profile) {
 
     try {
         const response = await generateContentWithRetry(prompt);
-        // SDK @google/genai returns result with .text() getter or property?
-        // Wait, @google/genai result structure is different from @google/generative-ai
-        // The user's code `services/profileService.ts` used `response.text || ""`
-        // Let's stick to that.
+        // SDK @google/genai returns result with .text || ""
 
         const text = response.text || "";
         const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/) || text.match(/\[[\s\S]*\]/);
@@ -125,6 +122,7 @@ async function scrapeProfile(profile) {
 }
 
 function generateXML(items, title) {
+    // Sort descending by date
     items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
     const itemsXML = items.map(item => `
@@ -135,7 +133,9 @@ function generateXML(items, title) {
       <pubDate>${new Date(item.pubDate).toUTCString()}</pubDate>
       <author>${item.author}</author>
       <guid>${item.guid}</guid>
+      ${item.imageUrl ? `<enclosure url="${item.imageUrl}" type="image/jpeg" />` : ''} 
     </item>`).join('');
+    // Added enclosure for advanced readers, though description usually carries image too.
 
     return `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
@@ -150,8 +150,62 @@ function generateXML(items, title) {
 </rss>`;
 }
 
+// Helper to parse existing XML and retrieve items
+function parseExistingFeed(xmlContent) {
+    const items = [];
+    // Regex to capture content inside <item>...</item>
+    const itemRegex = /<item>[\s\S]*?<\/item>/g;
+    const matches = xmlContent.match(itemRegex);
+
+    if (matches) {
+        matches.forEach(itemStr => {
+            try {
+                const titleMatch = itemStr.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/);
+                const linkMatch = itemStr.match(/<link>(.*?)<\/link>/);
+                const descMatch = itemStr.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/);
+                const dateMatch = itemStr.match(/<pubDate>(.*?)<\/pubDate>/);
+                const authorMatch = itemStr.match(/<author>(.*?)<\/author>/);
+                const guidMatch = itemStr.match(/<guid>(.*?)<\/guid>/);
+                // Also capture enclosure/image if needed, but for dedupe link is enough.
+
+                if (linkMatch && dateMatch) {
+                    items.push({
+                        title: titleMatch ? titleMatch[1] : '',
+                        link: linkMatch[1],
+                        description: descMatch ? descMatch[1] : '',
+                        pubDate: new Date(dateMatch[1]).toISOString(), // Store as ISO for sorting
+                        author: authorMatch ? authorMatch[1] : '',
+                        guid: guidMatch ? guidMatch[1] : linkMatch[1]
+                    });
+                }
+            } catch (e) {
+                // Ignore malformed items
+            }
+        });
+    }
+    return items;
+}
+
 async function main() {
     console.log(`Starting scan for ${profiles.length} profiles...`);
+
+    // 1. Read existing feed to prevent duplicates
+    const outputPath = path.join(__dirname, '../public/feed.xml');
+    let existingItems = [];
+    const existingGuids = new Set();
+
+    if (fs.existsSync(outputPath)) {
+        console.log("Reading existing feed...");
+        try {
+            const existingXML = fs.readFileSync(outputPath, 'utf8');
+            existingItems = parseExistingFeed(existingXML);
+            existingItems.forEach(item => existingGuids.add(item.link)); // Use link as unique ID
+            console.log(`Loaded ${existingItems.length} existing items.`);
+        } catch (e) {
+            console.log("Could not read existing feed, starting fresh.");
+        }
+    }
+
     let allNewItems = [];
 
     // Turbo Mode: Process 5 profiles in parallel
@@ -164,8 +218,18 @@ async function main() {
 
         results.forEach(items => {
             if (items.length > 0) {
-                console.log(`  + Found ${items.length} items.`);
-                allNewItems = [...allNewItems, ...items];
+                // Filter duplicates
+                const uniqueItems = items.filter(item => !existingGuids.has(item.link));
+
+                if (uniqueItems.length > 0) {
+                    console.log(`  + Found ${items.length} items (${uniqueItems.length} new).`);
+                    allNewItems = [...allNewItems, ...uniqueItems];
+
+                    // Add new GUIDs to Set to prevent dupes within the same run 
+                    uniqueItems.forEach(u => existingGuids.add(u.link));
+                } else {
+                    console.log(`  . Found ${items.length} items (All duplicates).`);
+                }
             }
         });
 
@@ -175,15 +239,25 @@ async function main() {
         }
     }
 
-    console.log(`Scan complete. Found total ${allNewItems.length} items.`);
+    console.log(`Scan complete. Found ${allNewItems.length} NEW items.`);
 
-    if (allNewItems.length === 0) {
-        console.log("No new items found. Exiting.");
+    // Merge New + Old
+    const combinedItems = [...allNewItems, ...existingItems];
+
+    // Sort by Date Descending
+    combinedItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+    // Limit to max 100 items to keep feed size healthy
+    const MAX_ITEMS = 100;
+    const finalItems = combinedItems.slice(0, MAX_ITEMS);
+
+    // Write even if no new items to keep health check
+    if (finalItems.length === 0) {
+        console.log("No items at all. Exiting.");
         return;
     }
 
-    const xmlContent = generateXML(allNewItems, "Havacılık ve Savunma Gündemi");
-    const outputPath = path.join(__dirname, '../public/feed.xml');
+    const xmlContent = generateXML(finalItems, "Havacılık ve Savunma Gündemi");
 
     // Ensure dir exists
     const dir = path.dirname(outputPath);
@@ -192,7 +266,7 @@ async function main() {
     }
 
     fs.writeFileSync(outputPath, xmlContent);
-    console.log(`Feed written to ${outputPath}`);
+    console.log(`Feed written to ${outputPath} with ${finalItems.length} items.`);
 }
 
 main().catch(console.error);
