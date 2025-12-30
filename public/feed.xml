@@ -4,58 +4,85 @@
     <title>Havacılık ve Savunma Gündemi</title>
     <link>https://github.com/gurkankose123/rss</link>
     <description>Otomatik güncellenen RSS akışı (Social2RSS Pro)</description>
-    <lastBuildDate>Mon, 29 Dec 2025 15:49:46 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 30 Dec 2025 07:06:52 GMT</lastBuildDate>
     <language>tr</language>
     
     <item>
-      <title>1 Ocak&apos;ta Ücretsiz Ulaşım Müjdesi</title>
+      <title>D-100 Gerede-Karabük Sınırı Ulaşıma Açıldı</title>
+      <link>https://twitter.com/UABakanligi</link>
+      <description>Yoğun kar yağışı ve kış şartlarına uygun donanıma sahip olmayan ağır taşıtların makaslaması nedeniyle geçici olarak trafiğe kapanan D-100 Devlet Yolu&apos;nun Gerede–Karabük İl Sınırı arası kesimi, Karayolları ekiplerinin çalışmaları sonucu yeniden ulaşıma açıldı.</description>
+      <pubDate>Tue, 30 Dec 2025 06:24:00 GMT</pubDate>
+      <author>Ulaştırma Bak. Twitter Hesabı</author>
+      <guid>https://twitter.com/UABakanligi</guid>
+      
+    </item>
+    <item>
+      <title>HAVELSAN ve Advanced Rotorcraft Technology (ART) Stratejik Ortaklığı</title>
+      <link>https://linkedin.com/company/havelsan</link>
+      <description>HAVELSAN, ABD merkezli Advanced Rotorcraft Technology (ART) firması ile rotorlu hava araçları simülasyonu ve mühendislik analizi alanında stratejik ortaklık anlaşması imzaladı. Bu iş birliği ile yüksek doğrulukta rotorlu hava aracı uçuş dinamikleri ve motor modelleri HAVELSAN simülatörlerine entegre edilecek.</description>
+      <pubDate>Tue, 30 Dec 2025 05:00:00 GMT</pubDate>
+      <author>HAVELSAN LinkedIn Hesabı</author>
+      <guid>https://linkedin.com/company/havelsan</guid>
+      
+    </item>
+    <item>
+      <title>HÜRJET’ten İspanya’ya Tarihi İhracat Başarısı</title>
+      <link>https://linkedin.com/company/turkish-aerospace-industries</link>
+      <description>Türkiye&apos;nin ilk milli jet eğitim uçağı HÜRJET, 30 adetlik paketle İspanya Hava ve Uzay Kuvvetleri tarafından tercih edildi. Toplam 2,6 milyar avro değerindeki bu dev anlaşma ile HÜRJET, Avrupa ve bir NATO üyesi ülkenin envanterine giren ilk Türk jet uçağı olarak tarihe geçti.</description>
+      <pubDate>Tue, 30 Dec 2025 04:00:00 GMT</pubDate>
+      <author>TUSAŞ LinkedIn Hesabı</author>
+      <guid>https://linkedin.com/company/turkish-aerospace-industries</guid>
+      
+    </item>
+    <item>
+      <title>Sabiha Gökçen Havalimanı T1 Terminali 1. Fazı Hizmete Açıldı</title>
+      <link>https://twitter.com/dhmikurumsal</link>
+      <description>İstanbul Sabiha Gökçen Havalimanı&apos;nda yenilenen Terminal 1&apos;in ilk fazı resmi olarak hizmete açıldı. Bu kapasite artışıyla havalimanının yıllık yolcu kapasitesine 5,5 milyonluk bir katkı sağlanması hedefleniyor.</description>
+      <pubDate>Tue, 30 Dec 2025 04:00:00 GMT</pubDate>
+      <author>DHMİ Twitter Hesabı</author>
+      <guid>https://twitter.com/dhmikurumsal</guid>
+      
+    </item>
+    <item>
+      <title>Lufthansa, Stuttgart Havalimanı&apos;ndaki Salonunu Yeniden Açtı</title>
+      <link>https://twitter.com/aeronewsglobal</link>
+      <description>Lufthansa, Stuttgart Havalimanı&apos;ndaki lounge alanını kapsamlı bir tadilatın ardından yeniden hizmete açtı. Yenilenen alanda barista kahve barı, çoklu konfor bölgeleri ve çalışma alanları gibi yeni özellikler bulunuyor.</description>
+      <pubDate>Mon, 29 Dec 2025 21:45:00 GMT</pubDate>
+      <author>AeroNewsGlobal Twitter Hesabı</author>
+      <guid>https://twitter.com/aeronewsglobal</guid>
+      
+    </item>
+    <item>
+      <title>THY&apos;nin Arnavutluk&apos;a uçak hibe edeceği iddialarına yalanlama</title>
+      <link>https://twitter.com/yhyustun</link>
+      <description>Türk Hava Yolları İletişim Başkanı Yahya Üstün, bazı basın ve yayın organlarında yer alan &apos;THY&apos;nin bir uçağını Arnavutluk&apos;a hibe ettiği&apos; yönündeki haberlerin gerçeği yansıtmadığını; söz konusu uçağın mülkiyetinin hiçbir zaman THY&apos;ye geçmediğini ve yalnızca operasyonel ihtiyaçlar kapsamında kullanıldığını açıkladı.</description>
+      <pubDate>Mon, 29 Dec 2025 21:06:00 GMT</pubDate>
+      <author>Yahya Üstün Twitter Hesabı</author>
+      <guid>https://twitter.com/yhyustun</guid>
+      
+    </item>
+    <item>
+      <title>1 Ocak&amp;apos;ta Ücretsiz Ulaşım Müjdesi</title>
       <link>https://twitter.com/a_uraloglu</link>
-      <description>Ulaştırma ve Altyapı Bakanı Abdulkadir Uraloğlu, 1 Ocak 2026 tarihinde İstanbul, Ankara ve İzmir&apos;de bakanlığa bağlı kent içi raylı sistem hatlarının (Marmaray, Başkentray, İZBAN, Sirkeci-Kazlıçeşme ve Gayrettepe-İstanbul Havalimanı hatları) ücretsiz hizmet vereceğini duyurdu.</description>
+      <description>Ulaştırma ve Altyapı Bakanı Abdulkadir Uraloğlu, 1 Ocak 2026 tarihinde İstanbul, Ankara ve İzmir&amp;apos;de bakanlığa bağlı kent içi raylı sistem hatlarının (Marmaray, Başkentray, İZBAN, Sirkeci-Kazlıçeşme ve Gayrettepe-İstanbul Havalimanı hatları) ücretsiz hizmet vereceğini duyurdu.</description>
       <pubDate>Mon, 29 Dec 2025 14:34:00 GMT</pubDate>
       <author>Abdulkadir Uraloğlu Twitter Hesabı</author>
       <guid>https://twitter.com/a_uraloglu</guid>
       
     </item>
     <item>
-      <title>Altunizade-Çamlıca-Bosna Bulvarı Metro Hattı İncelemesi ve Genişleme Müjdesi</title>
-      <link>https://twitter.com/UABakanligi</link>
-      <description>Bakan Abdulkadir Uraloğlu, Altunizade-Ferah Mahallesi-Çamlıca Camii-Bosna Bulvarı metro hattını yerinde inceledi. Hattın Ümraniye Spor Köyü&apos;ne kadar uzatılacağı ve İstanbul&apos;a 5 kilometre daha yeni raylı sistem kazandırılacağı açıklandı.</description>
-      <pubDate>Mon, 29 Dec 2025 13:02:00 GMT</pubDate>
-      <author>Ulaştırma Bak. Twitter Hesabı</author>
-      <guid>https://twitter.com/UABakanligi</guid>
-      
-    </item>
-    <item>
-      <title>TAYFUN Füze Sistemi Test Atışı Başarısı</title>
-      <link>https://twitter.com/halukgorgun</link>
-      <description>TAYFUN Füze ve Silah Sistemimiz gerçekleştirilen test atışında hedefini başarıyla vurdu. Türk Silahlı Kuvvetleri&apos;nin operasyonel kabiliyetlerini güçlendirmeye devam ediyoruz.</description>
-      <pubDate>Mon, 29 Dec 2025 10:45:00 GMT</pubDate>
-      <author>Haluk Görgün Twitter Hesabı</author>
-      <guid>https://twitter.com/halukgorgun</guid>
-      
-    </item>
-    <item>
       <title>TAYFUN Füzesi Test Atışı Başarıyla Gerçekleşti</title>
       <link>https://linkedin.com/company/ssb-gov-tr</link>
-      <description>ROKETSAN tarafından yerli ve milli imkanlarla geliştirilen TAYFUN balistik füzesinin son test atışı başarıyla tamamlandı. SSB Başkanı Haluk Görgün, testin başarısına ilişkin &apos;Gökyüzü bugün bir kez daha milletimizin iradesine tanıklık etti&apos; ifadelerini kullandı.</description>
+      <description>ROKETSAN tarafından yerli ve milli imkanlarla geliştirilen TAYFUN balistik füzesinin son test atışı başarıyla tamamlandı. SSB Başkanı Haluk Görgün, testin başarısına ilişkin &amp;apos;Gökyüzü bugün bir kez daha milletimizin iradesine tanıklık etti&amp;apos; ifadelerini kullandı.</description>
       <pubDate>Mon, 29 Dec 2025 09:45:00 GMT</pubDate>
       <author>SSB LinkedIn Hesabı</author>
       <guid>https://linkedin.com/company/ssb-gov-tr</guid>
       
     </item>
     <item>
-      <title>Lufthansa Lounge Stuttgart Havalimanı&apos;nda Yeniden Hizmete Girdi</title>
-      <link>https://twitter.com/aeronewsglobal</link>
-      <description>Lufthansa, Stuttgart Havalimanı&apos;ndaki Business ve Senator lounge alanlarını kapsamlı bir modernizasyon sürecinin ardından barista kahve barı, yeni konfor bölgeleri ve çalışma alanlarıyla yeniden açtı.</description>
-      <pubDate>Mon, 29 Dec 2025 09:15:00 GMT</pubDate>
-      <author>AeroNewsGlobal Twitter Hesabı</author>
-      <guid>https://twitter.com/aeronewsglobal</guid>
-      
-    </item>
-    <item>
       <title>ASELSAN TOLUN: Milli Sığınak Delici Mühimmattan Tam İsabet</title>
       <link>https://linkedin.com/company/aselsan</link>
-      <description>Bayraktar AKINCI TİHA&apos;dan atılan sığınak delici TOLUN mühimmatı, test faaliyeti kapsamında beton korugan altındaki UH-1 helikopterini tam isabetle vurdu. ASELSAN Genel Müdürü Ahmet Akyol, &apos;İki milli güç, yeni yeteneklerle sahnede. Boşuna saklama, saklanma...&apos; ifadeleriyle bu önemli kilometre taşını ve milli mühendislik gücünü vurguladı.</description>
+      <description>Bayraktar AKINCI TİHA&amp;apos;dan atılan sığınak delici TOLUN mühimmatı, test faaliyeti kapsamında beton korugan altındaki UH-1 helikopterini tam isabetle vurdu. ASELSAN Genel Müdürü Ahmet Akyol, &amp;apos;İki milli güç, yeni yeteneklerle sahnede. Boşuna saklama, saklanma...&amp;apos; ifadeleriyle bu önemli kilometre taşını ve milli mühendislik gücünü vurguladı.</description>
       <pubDate>Mon, 29 Dec 2025 08:52:00 GMT</pubDate>
       <author>ASELSAN LinkedIn Hesabı</author>
       <guid>https://linkedin.com/company/aselsan</guid>
@@ -64,25 +91,16 @@
     <item>
       <title>Dünya Havacılık Tarihinde Bir İlk: Bayraktar KIZILELMA Otonom Yakın Kol Uçuşu</title>
       <link>https://linkedin.com/in/haluk-bayraktar</link>
-      <description>Dünya havacılık tarihinde ilk kez iki insansız savaş uçağı (Bayraktar KIZILELMA PT3 ve PT5) otonom olarak yakın kol uçuşu gerçekleştirdi. Haluk Bayraktar bu başarıyı &apos;Kopyalayan değil icat eden, taklit eden değil takip edilen...&apos; sözleriyle paylaştı.</description>
+      <description>Dünya havacılık tarihinde ilk kez iki insansız savaş uçağı (Bayraktar KIZILELMA PT3 ve PT5) otonom olarak yakın kol uçuşu gerçekleştirdi. Haluk Bayraktar bu başarıyı &amp;apos;Kopyalayan değil icat eden, taklit eden değil takip edilen...&amp;apos; sözleriyle paylaştı.</description>
       <pubDate>Mon, 29 Dec 2025 08:43:00 GMT</pubDate>
       <author>Haluk Bayraktar LinkedIn Hesabı</author>
       <guid>https://linkedin.com/in/haluk-bayraktar</guid>
       <enclosure url="https://cdnuploads.aa.com.tr/uploads/Contents/2025/12/28/thumbs_b_c_8258b668545e851d7827827727827827.jpg" type="image/jpeg" />
     </item>
     <item>
-      <title>Iğdır Şehit Bülent Aydın Havalimanı Kasım 2025 İstatistikleri</title>
-      <link>https://twitter.com/dhmikurumsal</link>
-      <description>Devlet Hava Meydanları İşletmesi (DHMİ) Genel Müdürlüğü, Iğdır Şehit Bülent Aydın Havalimanı&apos;nın 2025 yılı Kasım ayına ait yolcu, uçak ve yük istatistiklerini paylaştı. Paylaşımda havalimanının bölge ulaşımındaki kritik rolü ve hizmet verileri vurgulandı.</description>
-      <pubDate>Mon, 29 Dec 2025 08:35:00 GMT</pubDate>
-      <author>DHMİ Twitter Hesabı</author>
-      <guid>https://twitter.com/dhmikurumsal</guid>
-      
-    </item>
-    <item>
       <title>Sabiha Gökçen Havalimanı Terminal 1 Renovasyon Projesi 1. Faz Açılışı</title>
       <link>https://twitter.com/SabihaGokcen</link>
-      <description>Ulaştırma ve Altyapı Bakanı Abdulkadir Uraloğlu&apos;nun katılımıyla Terminal 1 Renovasyon Projesi&apos;nin ilk fazı hizmete açıldı. Yenilenen Terminal 1, 240 metrelik bir bağlantı köprüsüyle Terminal 2&apos;ye entegre edilerek havalimanının toplam kapasitesini yıllık 50 milyon yolcunun üzerine çıkardı. Modern mimari ve teknolojik altyapıyla güncellenen terminal, yolcu konforunu artırmayı hedefliyor.</description>
+      <description>Ulaştırma ve Altyapı Bakanı Abdulkadir Uraloğlu&amp;apos;nun katılımıyla Terminal 1 Renovasyon Projesi&amp;apos;nin ilk fazı hizmete açıldı. Yenilenen Terminal 1, 240 metrelik bir bağlantı köprüsüyle Terminal 2&amp;apos;ye entegre edilerek havalimanının toplam kapasitesini yıllık 50 milyon yolcunun üzerine çıkardı. Modern mimari ve teknolojik altyapıyla güncellenen terminal, yolcu konforunu artırmayı hedefliyor.</description>
       <pubDate>Mon, 29 Dec 2025 08:30:00 GMT</pubDate>
       <author>Sabiha Gökçen Twitter Hesabı</author>
       <guid>https://twitter.com/SabihaGokcen</guid>
@@ -91,7 +109,7 @@
     <item>
       <title>Ryanair Uçağında Şiddetli Türbülans: Yolcular Yaralandı ve Acil İniş Yapıldı</title>
       <link>https://twitter.com/aviationbrk</link>
-      <description>Birmingham&amp;apos;dan Tenerife&amp;apos;ye giden Ryanair FR1121 sefer sayılı Boeing 737 MAX uçağı, 35.000 fitte şiddetli türbülansa yakalandı. Kabin servisi sırasında gerçekleşen olayda bazı yolcular koltuklarından fırlayarak yaralandı; uçak Birmingham&amp;apos;a acil iniş yapmak zorunda kaldı.</description>
+      <description>Birmingham&amp;amp;apos;dan Tenerife&amp;amp;apos;ye giden Ryanair FR1121 sefer sayılı Boeing 737 MAX uçağı, 35.000 fitte şiddetli türbülansa yakalandı. Kabin servisi sırasında gerçekleşen olayda bazı yolcular koltuklarından fırlayarak yaralandı; uçak Birmingham&amp;amp;apos;a acil iniş yapmak zorunda kaldı.</description>
       <pubDate>Mon, 29 Dec 2025 08:30:00 GMT</pubDate>
       <author>AviationBrk Twitter Hesabı</author>
       <guid>https://twitter.com/aviationbrk</guid>
@@ -127,10 +145,19 @@
     <item>
       <title>Ryanair FR1121 Acil Durum ve Geri Dönüş Özeti</title>
       <link>https://twitter.com/flightemergency</link>
-      <description>Birmingham&amp;apos;dan Tenerife&amp;apos;ye giden Ryanair&amp;apos;e ait FR1121 sefer sayılı uçuş, Fransa üzerinde şiddetli türbülansla karşılaştıktan sonra 7700 acil durum kodu (squawk) yayınladı. Uçakta çok sayıda yolcunun yaralandığı ve uçağın Birmingham&amp;apos;a geri dönmek zorunda kaldığı bildirildi. Yolcular, uçağın kontrolünü kaybettiği anları &amp;apos;korku filmi gibi&amp;apos; sözleriyle tanımladı.</description>
+      <description>Birmingham&amp;amp;apos;dan Tenerife&amp;amp;apos;ye giden Ryanair&amp;amp;apos;e ait FR1121 sefer sayılı uçuş, Fransa üzerinde şiddetli türbülansla karşılaştıktan sonra 7700 acil durum kodu (squawk) yayınladı. Uçakta çok sayıda yolcunun yaralandığı ve uçağın Birmingham&amp;amp;apos;a geri dönmek zorunda kaldığı bildirildi. Yolcular, uçağın kontrolünü kaybettiği anları &amp;amp;apos;korku filmi gibi&amp;amp;apos; sözleriyle tanımladı.</description>
       <pubDate>Mon, 29 Dec 2025 06:58:00 GMT</pubDate>
       <author>FlightEmergency Twitter Hesabı</author>
       <guid>https://twitter.com/flightemergency</guid>
+      
+    </item>
+    <item>
+      <title>HÜRJET İspanya İhracat Anlaşması</title>
+      <link>https://twitter.com/halukgorgun</link>
+      <description>Türkiye&apos;nin ilk millî jet eğitim uçağı HÜRJET&apos;in İspanya&apos;ya 30 adetlik satışı için 2,6 milyar avro değerinde tarihi bir ihracat sözleşmesi imzalandığı duyuruldu. Paylaşımda, bu başarının Türk savunma sanayiinin küresel ölçekte ulaştığı güven ve yetkinliğin bir göstergesi olduğu vurgulandı.</description>
+      <pubDate>Mon, 30 Dec 2024 05:18:00 GMT</pubDate>
+      <author>Haluk Görgün Twitter Hesabı</author>
+      <guid>https://twitter.com/halukgorgun</guid>
       
     </item>
   </channel>
